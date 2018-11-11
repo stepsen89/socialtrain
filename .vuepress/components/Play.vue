@@ -9,6 +9,7 @@
     </div>
     <div class="button-wrapper">
       <button @click="increase">CLICK!</button>
+      <button @click="gameStart">HIDDEN</button>
     </div>
     <Users />
   </div>
@@ -16,11 +17,12 @@
 
 <script>
 import Users from './Users'
+import { generateName } from './Utils'
 
 export default {
   components: { Users },
   data: () => ({
-    user: 'John Doe',
+    user: generateName(),
     progressWidth: 100,
     score: 0,
     timeOver: false
@@ -31,13 +33,38 @@ export default {
     }
   },
   methods: {
-    increase() {
-      if (!this.timeOver) this.score++
+    gameStart() {
+      this.$socket.emit('MASTER_START')
     },
-    decrease() {
-      let progress = document.getElementById('progress')
-      progress.style.width = this.wrapperWidth + 'px'
-      let step = this.wrapperWidth / 100
+    increase() {
+      if (!this.timeOver) {
+        this.score++
+      }
+    },
+    // decrease() {
+    //   let progress = document.getElementById('progress')
+    //   progress.style.width = this.wrapperWidth + 'px'
+    //   let step = this.wrapperWidth / 100
+    //
+    //   let interval = setInterval(() => {
+    //     let currWidth = progress.style.width.split('px')[0]
+    //     progress.style.width = (currWidth - step) + 'px'
+    //     if (currWidth <= 0) {
+    //       clearInterval(interval)
+    //       this.timeOver = true
+    //       this.$socket.emit('REPORT_SCORE', { score: this.score, user: this.user })
+    //     }
+    //   }, 100)
+    // }
+  },
+  mounted() {
+    // this.decrease()
+    let progress = document.getElementById('progress')
+    progress.style.width = this.wrapperWidth + 'px'
+  },
+  sockets: {
+    GAME_START () {
+      const step = this.wrapperWidth / 100
 
       let interval = setInterval(() => {
         let currWidth = progress.style.width.split('px')[0]
@@ -45,12 +72,10 @@ export default {
         if (currWidth <= 0) {
           clearInterval(interval)
           this.timeOver = true
+          this.$socket.emit('REPORT_SCORE', { score: this.score, user: this.user })
         }
       }, 100)
     }
-  },
-  mounted() {
-    this.decrease()
   }
 }
 </script>

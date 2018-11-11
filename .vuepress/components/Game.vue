@@ -17,7 +17,17 @@ export default {
   }),
   methods: {
     receiveIntent(intent) {
-      this.play = intent === 'play' ? true : false
+      // this.play = intent === 'play' ? true : false
+
+      if (intent === 'play') {
+        this.play = true
+        return
+      }
+    }
+  },
+  sockets: {
+    END_GAME() {
+      console.log('Game finished in FRONT')
     }
   }
 }

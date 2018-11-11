@@ -1,4 +1,4 @@
 ---
-- title: my title
+title: GameTrain
 ---
 <Game />

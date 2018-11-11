@@ -7,12 +7,18 @@
     "dev": "vuepress dev",
     "build": "vuepress build",
     "eject": "vuepress eject",
+    "nodemon": "nodemon server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "express": "^4.16.3",
+    "nodemon": "^1.18.6",
+    "socket.io": "^2.1.1",
+    "socket.io-client": "^2.1.1",
+    "vue-socket.io": "^2.1.1-b",
     "vuepress": "^0.14.4"
   }
 }

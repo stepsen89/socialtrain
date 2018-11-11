@@ -1,0 +1,18 @@
+{
+  "name": "socialtrain",
+  "version": "1.0.0",
+  "description": "Social platform for HackTrain 5.0",
+  "main": "index.js",
+  "scripts": {
+    "dev": "vuepress dev",
+    "build": "vuepress build",
+    "eject": "vuepress eject",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "vuepress": "^0.14.4"
+  }
+}

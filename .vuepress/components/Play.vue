@@ -89,17 +89,22 @@ button
 #wrapper
   width 100%
   height 4em
-  border 1px solid red
+  border 1px solid white
   #progress
     width 0
     height 100%
-    background green
+    background #00BEC2
 .button-wrapper
   width 100%
   text-align center
   padding 1em 0
   button
     font-size 1.2em
+    background #00C7DF
+    border-radius 1em
+    color white
+    width 8em
+    border 1px solid white
 #score
   float right
   &:before
